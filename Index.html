@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Animations & JS Scope Demo</title>
+  <meta name="description" content="Project demonstrating CSS transitions/keyframes and JS scope/parameters/return values + animation triggers." />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <h1>Animations & JavaScript: Scope, Parameters, Returns, Triggers</h1>
+    <p class="lead">Each file is labeled and commented. Use the controls below to trigger animations and explore functions.</p>
+  </header>
+
+  <main id="main" class="container">
+
+    <!-- Section A: animation playground -->
+    <section id="animation-playground" aria-labelledby="anim-heading">
+      <h2 id="anim-heading">Animation Playground</h2>
+
+      <!-- Animated elements -->
+      <div class="controls">
+        <button id="trigger-slide" type="button">Trigger Slide</button>
+        <button id="trigger-pulse" type="button">Trigger Pulse</button>
+        <button id="trigger-fade" type="button">Trigger Fade</button>
+        <button id="trigger-sequence" type="button">Trigger Sequence (chained)</button>
+      </div>
+
+      <div class="stage">
+        <div id="box-slide" class="box box-slide">Slide</div>
+        <div id="box-pulse" class="box box-pulse">Pulse</div>
+        <div id="box-fade"  class="box box-fade">Fade</div>
+      </div>
+
+      <p class="note">Animations use CSS keyframes; JavaScript adds/removes animation classes and uses <code>animationend</code> events.</p>
+    </section>
+
+    <!-- Section B: interactive demo showing scope, parameters, returns -->
+    <section id="js-demo" aria-labelledby="js-heading">
+      <h2 id="js-heading">JS: Scope, Functions, Parameters & Return Values</h2>
+
+      <div class="demo-grid">
+        <div class="card">
+          <h3>1) Example: scope</h3>
+          <p>Open console and click <em>Show Scope</em> to see examples of global vs local variables and a closure.</p>
+          <button id="show-scope" type="button">Show Scope</button>
+        </div>
+
+        <div class="card">
+          <h3>2) Example: parameters & return value</h3>
+          <p>Enter a number, click compute — the function accepts a parameter and returns a value (squared + offset).</p>
+          <input id="number-input" type="number" placeholder="Enter a number" />
+          <button id="compute-btn" type="button">Compute</button>
+          <div id="compute-result" class="result" aria-live="polite">Result: —</div>
+        </div>
+
+        <div class="card">
+          <h3>3) Example: animation with callback (triggered from JS)</h3>
+          <p>Click the button to animate the pulse box. JS will call a function that returns a promise resolved after animation end.</p>
+          <button id="animate-with-callback" type="button">Animate with Callback</button>
+          <div id="callback-result" class="result" aria-live="polite">Status: idle</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section C: accessible small form (not used for validation here) -->
+    <section id="contact" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Small Contact Form (for demo)</h2>
+      <form id="demo-form" action="#" method="post">
+        <label for="fullname">Full name</label>
+        <input id="fullname" name="fullname" type="text" placeholder="Jane Doe" autocomplete="name" />
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="name@example.com" autocomplete="email" />
+
+        <div class="form-actions">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <small>Project: animations + JS scope demo — 2025</small>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
