@@ -1,0 +1,94 @@
+/* styles.css
+   -------------------------
+   Purpose: transitions & keyframe animations for the project.
+   Contains:
+   - gentle color system
+   - transitions for hover/transform
+   - keyframes: slideIn, pulseScale, fadeInOut
+   - utility classes that JS toggles to start animations
+   ------------------------- */
+
+/* Base & layout */
+:root{
+  --bg: #f7fafc;
+  --card: #ffffff;
+  --accent: #2563eb;
+  --muted: #6b7280;
+  --surface: #0f1724;
+}
+* { box-sizing: border-box; }
+html,body { height:100%; margin:0; font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto; background:var(--bg); color:#0b1220; }
+.container { max-width:1100px; margin:24px auto; padding:0 18px; }
+
+/* Header */
+.site-header { margin: 8px 0 18px; }
+.site-header h1 { margin: 0 0 6px; font-size:1.4rem; color:var(--accent); }
+.lead { margin:0 0 12px; color:var(--muted); }
+
+/* Controls row */
+.controls { display:flex; gap:10px; margin-bottom:14px; flex-wrap:wrap; }
+.controls button { padding:10px 12px; border-radius:8px; border:none; cursor:pointer; background:var(--accent); color:white; font-weight:700; transition:transform .12s ease, box-shadow .12s ease; }
+.controls button:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(37,99,235,0.12); }
+
+/* Stage for animated boxes */
+.stage { display:flex; gap:14px; align-items:center; padding:18px 0; }
+.box { width:140px; height:80px; display:flex; align-items:center; justify-content:center; border-radius:10px; background:var(--card); box-shadow:0 6px 20px rgba(2,6,23,0.06); color:var(--accent); font-weight:700; border:1px solid rgba(37,99,235,0.12); transition: transform .25s ease, opacity .25s ease; }
+
+/* Keyframes -------------------------------------------------------------- */
+/* slideIn: translateX from -120% to 0 (used by .animate-slide class) */
+@keyframes slideIn {
+  0%   { transform: translateX(-140%); opacity: 0; }
+  60%  { transform: translateX(8%); opacity: 1; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+/* pulseScale: subtle scaling pulse for emphasis */
+@keyframes pulseScale {
+  0%   { transform: scale(1); }
+  25%  { transform: scale(1.06); }
+  50%  { transform: scale(0.98); }
+  100% { transform: scale(1); }
+}
+
+/* fadeInOut: fade in, hold, fade out (used for short notifications) */
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(8px); }
+  10% { opacity: 1; transform: translateY(0); }
+  80% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-6px); }
+}
+
+/* Animation classes JS will toggle ------------------------------------- */
+/* Add animation properties here so JS only adds the class to start it. */
+.animate-slide {
+  animation: slideIn 700ms cubic-bezier(.2,.9,.3,1) both;
+}
+
+.animate-pulse {
+  animation: pulseScale 700ms ease both;
+}
+
+.animate-fade {
+  animation: fadeInOut 1800ms ease both;
+}
+
+/* For sequence demo: a small modifier to show when an animation runs */
+.playing { outline: 3px solid rgba(37,99,235,0.12); }
+
+/* JS demo grid and cards */
+.demo-grid { display:grid; gap:12px; grid-template-columns: 1fr; margin-top:12px; }
+.card { padding:12px; background:var(--card); border-radius:10px; box-shadow:0 6px 18px rgba(2,6,23,0.05); }
+.result { margin-top:8px; color:var(--muted); }
+
+/* Form */
+form { display:flex; flex-direction:column; gap:8px; margin-top:8px; }
+input[type="text"], input[type="email"], input[type="number"] { padding:8px; border-radius:8px; border:1px solid #e6eef8; }
+
+/* Footer */
+.site-footer { margin:26px 0 60px; color:var(--muted); text-align:center; font-size:0.9rem; }
+
+/* Responsive: 2-column JS demo on wider screens */
+@media (min-width:800px){
+  .demo-grid { grid-template-columns: repeat(2, 1fr); }
+  .stage { gap:18px; }
+}
